@@ -55,7 +55,7 @@ function App() {
   const handleCreateOrEditActivity = (activity: Activity) => {
     setSubmitting(true);
     if (activity.id) {
-      agent.Activities.create(activity).then(() => {
+      agent.Activities.update(activity).then(() => {
         setActivities([...activities.filter(x => x.id != activity.id), activity])
         setSelectedActivity(activity);
         setEditMode(false);
@@ -64,7 +64,7 @@ function App() {
     }
     else {
       activity.id = uuid();
-      agent.Activities.update(activity).then(() => {
+      agent.Activities.create(activity).then(() => {
         setActivities([...activities, activity as Activity]);
         setSelectedActivity(activity);
         setEditMode(false);
